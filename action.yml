@@ -14,6 +14,9 @@ inputs:
       Default is github-pr-check.
       github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
     default: 'github-pr-check'
+  textlint_flags:
+    description: "flags and args of textlint command. Default: '.'"
+    default: '.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -21,6 +24,7 @@ runs:
     - ${{ inputs.github_token }}
     - ${{ inputs.level }}
     - ${{ inputs.reporter }}
+    - ${{ inputs.textlint_flags }}
 branding:
   icon: 'alert-octagon'
   color: 'blue'
