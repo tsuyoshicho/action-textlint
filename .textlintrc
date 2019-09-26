@@ -6,7 +6,9 @@
   },
   "rules": {
     "spellcheck-tech-word": true,
-    "textlint-rule-prh": true,
+    "prh": {
+      "rulePaths" : ["./prh.yml"]
+    },
     "preset-ja-technical-writing": {
       "max-ten": {
         "max": 3
