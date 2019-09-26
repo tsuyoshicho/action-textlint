@@ -1,0 +1,24 @@
+# Rules for Japanese typo
+meta:
+  reviewer:
+    - vvakame
+    - mhidaka
+  rules:   https://github.com/prh/rules
+
+version: 1
+rules:
+  - expected: なるほど
+    pattern:  なほるど
+  - expected: で
+    pattern:  /(?<!ま)でで(?!(きる|きます|す))/
+    specs:
+      - from: でで
+        to:   で
+      - from: そこでで、
+        to:   そこで、
+      - from: Aでできる
+        to:   Aでできる
+      - from: Aまでです
+        to:   Aまでです
+  - expected: を
+    pattern:  をを
