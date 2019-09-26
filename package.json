@@ -1,0 +1,32 @@
+{
+  "name": "action-textlint",
+  "version": "1.0.0",
+  "description": "textlint with reviewdog",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsuyoshicho/action-textlint.git"
+  },
+  "keywords": [
+    "textlint",
+    "markdown"
+  ],
+  "author": "tsuyoshi_cho <Tsuyoshi.CHO+npm@Gmail.com>",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/tsuyoshicho/action-textlint/issues"
+  },
+  "homepage": "https://github.com/tsuyoshicho/action-textlint#readme",
+  "devDependencies": {
+    "textlint": "^11.3.1",
+    "textlint-rule-preset-ja-technical-writing": "^3.1.3",
+    "textlint-rule-prh": "^5.2.1",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+  }
+}
