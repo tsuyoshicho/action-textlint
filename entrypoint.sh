@@ -11,7 +11,6 @@ fi
 $(npm bin)/textlint --version
 
 if [ "${INPUT_REPORTER}" == 'github-pr-review' ]; then
-  # Use jq and github-pr-review reporter to format result to include link to rule page.
   $(npm bin)/textlint -f compact "${INPUT_TEXTLINT_FLAGS:-'.'}" \
     | reviewdog -efm="%f:%l:%c: %m" -name="textlint" -reporter=github-pr-review -level="${INPUT_LEVEL}"
 else
