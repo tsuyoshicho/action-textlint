@@ -8,7 +8,7 @@ RUN apk --update add git && \
 COPY .textlintrc   /
 COPY prh.yml       /
 RUN  mkdir         prh-rules
-COPY prh-rules     /prh-rules
+COPY prh-rules/    /prh-rules/
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
