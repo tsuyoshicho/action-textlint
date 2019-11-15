@@ -9,7 +9,7 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 
-# Extention
+# Extension
 # file
 [*.{txt,jax}]
 trim_trailing_whitespace = false
