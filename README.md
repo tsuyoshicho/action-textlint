@@ -9,11 +9,9 @@ text review experience.
 
 based on [reviewdog/action-vint](https://github.com/reviewdog/action-vint)
 
-```
-After caputring work to add below
-[![github-pr-check example]()]()
-[![github-pr-review example]()]()
-```
+
+[![github-pr-check example](https://user-images.githubusercontent.com/96727/70858620-bdc2fb80-1f48-11ea-9c1a-b5abb5a6566a.png)](https://user-images.githubusercontent.com/96727/70858620-bdc2fb80-1f48-11ea-9c1a-b5abb5a6566a.png)
+[![github-pr-review example](https://user-images.githubusercontent.com/96727/70858610-a1bf5a00-1f48-11ea-84c4-7ee7392548e6.png)](https://user-images.githubusercontent.com/96727/70858610-a1bf5a00-1f48-11ea-84c4-7ee7392548e6.png)
 
 ## Inputs
 
