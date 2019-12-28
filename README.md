@@ -51,14 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-name: reviewdog
-on: [pull_request]
-jobs:
-  textlint:
-    name: runner / textlint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
         with:
           submodules: true
       - name: textlint-github-pr-check
