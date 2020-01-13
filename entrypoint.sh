@@ -10,7 +10,7 @@ fi
 
 $(npm bin)/textlint --version
 
-$(npm bin)/textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-'.'}"    \
-  | reviewdog -f=checkstyle -name="textlint" -diff="git diff HEAD^" \
-              -reporter="${INPUT_REPORTER:-'github-pr-check'}"      \
+$(npm bin)/textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-'.'}" \
+  | reviewdog -f=checkstyle -name="textlint"                     \
+              -reporter="${INPUT_REPORTER:-'github-pr-check'}"   \
               -level="${INPUT_LEVEL:-'error'}"
