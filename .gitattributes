@@ -6,10 +6,9 @@
 .gitconfig.*   eol=lf
 .gitattributes eol=lf
 .gitmodules    eol=lf
-# .gitignore     eol=lf
 # gitignore contains Icon^M <- CRLF end
-# skip formatcheck
-.gitignore     binary
+# skip autocrlf,diff enable -> not binary, set -text
+.gitignore     -text
 
 *.sh           text eol=lf
 
