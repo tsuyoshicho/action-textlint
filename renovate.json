@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "github>tsuyoshicho/renovate-config"
-  ]
+  "extends": [ "github>tsuyoshicho/renovate-config" ]
 }
