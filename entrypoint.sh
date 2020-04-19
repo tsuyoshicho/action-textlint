@@ -4,9 +4,9 @@ cd "$GITHUB_WORKSPACE"
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-# if [ ! -f "$(npm bin)/textlint" ]; then
-#   npm install
-# fi
+if [ ! -f "$(npm bin)/textlint" ]; then
+  npm install
+fi
 
 $(npm bin)/textlint --version
 
