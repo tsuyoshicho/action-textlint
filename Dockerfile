@@ -6,8 +6,10 @@ RUN apk --update add git && \
     rm -rf /var/lib/apt/lists/* && \
     rm /var/cache/apk/*
 
-COPY package.json package-lock.json ./
+ENV PATH $PATH:/node_modules/.bin
+COPY package.json package-lock.json /
 RUN npm ci --production
+
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 

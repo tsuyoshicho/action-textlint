@@ -4,13 +4,9 @@ cd "$GITHUB_WORKSPACE"
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-if [ ! -f "$(npm bin)/textlint" ]; then
-  npm install
-fi
+textlint --version
 
-$(npm bin)/textlint --version
-
-$(npm bin)/textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-'.'}" \
-  | reviewdog -f=checkstyle -name="textlint"                     \
-              -reporter="${INPUT_REPORTER:-'github-pr-check'}"   \
+textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-'.'}"          \
+  | reviewdog -f=checkstyle -name="textlint"                   \
+              -reporter="${INPUT_REPORTER:-'github-pr-check'}" \
               -level="${INPUT_LEVEL:-'error'}"
