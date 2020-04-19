@@ -8,7 +8,7 @@ RUN apk --update add git && \
 
 COPY package.json package-lock.json ./
 RUN npm ci --production
-COPY entrypoint.sh ./
-RUN chmod +x ./entrypoint.sh
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
