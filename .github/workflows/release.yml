@@ -23,7 +23,6 @@ jobs:
       - uses: haya14busa/action-update-semver@v1
         if: "!steps.bumpr.outputs.skip"
         with:
-          github_token: ${{ secrets.github_token }}
           tag: ${{ steps.bumpr.outputs.next_version }}
 
       # Get tag name.
