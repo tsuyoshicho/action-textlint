@@ -10,7 +10,7 @@ RUN apk --update add git && \
 WORKDIR /
 ENV PATH $PATH:/node_modules/.bin
 COPY package.json package-lock.json /
-RUN npm ci
+RUN npm ci --production
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
