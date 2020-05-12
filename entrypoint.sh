@@ -5,7 +5,7 @@ cd "$GITHUB_WORKSPACE"
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 # nothing command, try project package install
-if npm ls textlint 2&> /dev/null; then
+if npm ls textlint &> /dev/null; then
   # pass
   :
 else
@@ -13,7 +13,7 @@ else
 fi
 # nothing command in after install, use command direct install
 PACKAGE=""
-if npm ls textlint 2&> /dev/null; then
+if npm ls textlint &> /dev/null; then
   npx textlint --version
 else
   PACKAGE="-p textlint@${INPUT_TEXTLINT_VERSION:-11.6.3}"
