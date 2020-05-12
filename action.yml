@@ -20,14 +20,13 @@ inputs:
     description: "flags and args of textlint command. Default: '.'"
     default: '.'
     required: false
+  textlint_version:
+    description: "if textlint do not contain in project, use this version. default:'11.6.3'"
+    default: '11.6.3'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.github_token }}
-    - ${{ inputs.level }}
-    - ${{ inputs.reporter }}
-    - ${{ inputs.textlint_flags }}
 branding:
   icon: 'alert-octagon'
   color: 'blue'
