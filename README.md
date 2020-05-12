@@ -35,9 +35,14 @@ github-pr-review can use Markdown and add a link to rule page in reviewdog repor
 
 textlint arguments (i.e. target dir:`doc/*`)
 
+### `textlint_version`
+
+if textlint do not contain in project, use this version.
+
 ## Customizes
 
 `.textlintrc` put in your repo.
+And package.json that install textlint with plugins, in your repo.
 
 ## Example usage
 
