@@ -42,7 +42,7 @@ if textlint do not contain in project, use this version.
 ## Customizes
 
 `.textlintrc` put in your repo.
-And package.json that install textlint with plugins, in your repo.
+And need textlint included in project package.json .
 
 ## Example usage
 
@@ -56,7 +56,7 @@ jobs:
     name: runner / textlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           submodules: true
       - name: textlint-github-pr-check
