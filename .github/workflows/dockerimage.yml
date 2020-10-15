@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        submodules: true
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag tsuyoshicho-textlint:$(date +%s)
