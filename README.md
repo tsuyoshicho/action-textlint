@@ -3,8 +3,7 @@
 ## IMPORTANT NOTICE
 
 action-textlint use textlint within npm ecosystem.
-___v2 series support npm v7 or later___.
-___IF use with npm later less than v7, please used v1 series___.
+___v2 series support npm v7___.
 
 ## detail
 
