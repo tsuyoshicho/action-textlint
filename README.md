@@ -1,5 +1,13 @@
 # GitHub Action: Run textlint with reviewdog
 
+## IMPORTANT NOTICE
+
+action-textlint use textlint within npm ecosystem.
+___v1 series support npm less than v7___.
+___IF use with npm v7 or later, please used v2 series___.
+
+## detail
+
 [![Docker Image CI](https://github.com/tsuyoshicho/action-textlint/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/tsuyoshicho/action-textlint/actions)
 [![Release](https://github.com/tsuyoshicho/action-textlint/workflows/release/badge.svg)](https://github.com/tsuyoshicho/action-textlint/releases)
 
