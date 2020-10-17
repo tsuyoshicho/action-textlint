@@ -3,8 +3,8 @@
 ## IMPORTANT NOTICE
 
 action-textlint use textlint within npm ecosystem.
-___v1 series support npm less than v7___.
-___IF use with npm v7 or later, please used v2 series___.
+___v2 series support npm v7 or later___.
+___IF use with npm later less than v7, please used v1 series___.
 
 ## detail
 
@@ -67,20 +67,24 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Setup node/npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: '15' # node v15 with npm v7
       - name: textlint-github-pr-check
-        uses: tsuyoshicho/action-textlint@v1
+        uses: tsuyoshicho/action-textlint@v2
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           textlint_flags: "doc/**"
       - name: textlint-github-check
-        uses: tsuyoshicho/action-textlint@v1
+        uses: tsuyoshicho/action-textlint@v2
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           textlint_flags: "doc/**"
       - name: textlint-github-pr-review
-        uses: tsuyoshicho/action-textlint@v1
+        uses: tsuyoshicho/action-textlint@v2
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
