@@ -1,9 +1,8 @@
 # GitHub Action: Run textlint with reviewdog
 
-## IMPORTANT NOTICE
+## notice
 
 action-textlint use textlint within npm ecosystem.
-___v2 series support npm v7___.
 
 ## detail
 
@@ -64,9 +63,9 @@ jobs:
         with:
           submodules: true
       - name: Setup node/npm
-        uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v2-beta # @v2 is not available yet
         with:
-          node-version: '15' # node v15 with npm v7
+          node-version: '14' # '15' is not available yet
       - name: textlint-github-pr-check
         uses: tsuyoshicho/action-textlint@v2
         with:
