@@ -11,7 +11,7 @@ if npm ls textlint &> /dev/null; then
   # pass
 else
   echo This repository was not configured for textlint, process done.
-  exit 0
+  exit 1
 fi
 
 npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-.}"            \
