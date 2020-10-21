@@ -1,10 +1,8 @@
 # GitHub Action: Run textlint with reviewdog
 
-## IMPORTANT NOTICE
+## notice
 
 action-textlint use textlint within npm ecosystem.
-___v1 series support npm less than v7___.
-___IF use with npm v7 or later, please used v2 series___.
 
 ## detail
 
@@ -43,10 +41,6 @@ github-pr-review can use Markdown and add a link to rule page in reviewdog repor
 
 textlint arguments (i.e. target dir:`doc/*`)
 
-### `textlint_version`
-
-if textlint do not contain in project, use this version.
-
 ## Customizes
 
 `.textlintrc` put in your repo.
@@ -64,23 +58,28 @@ jobs:
     name: runner / textlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Setup node/npm
+        uses: actions/setup-node@v2-beta # @v2 is not available yet
+        with:
+          node-version: '15'
       - name: textlint-github-pr-check
-        uses: tsuyoshicho/action-textlint@v1
+        uses: tsuyoshicho/action-textlint@v2
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           textlint_flags: "doc/**"
       - name: textlint-github-check
-        uses: tsuyoshicho/action-textlint@v1
+        uses: tsuyoshicho/action-textlint@v2
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           textlint_flags: "doc/**"
       - name: textlint-github-pr-review
-        uses: tsuyoshicho/action-textlint@v1
+        uses: tsuyoshicho/action-textlint@v2
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review

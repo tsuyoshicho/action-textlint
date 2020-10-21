@@ -9,6 +9,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Setup node/npm
+        uses: actions/setup-node@v2-beta # @v2 is not available yet
+        with:
+          node-version: '15'
       - name: textlint-github-pr-check
         uses: tsuyoshicho/action-textlint@master
         with:

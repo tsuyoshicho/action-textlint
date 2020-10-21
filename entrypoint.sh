@@ -4,23 +4,17 @@ cd "$GITHUB_WORKSPACE"
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-# nothing command, try project package install
+# setup and check.
+npm ci
 if npm ls textlint &> /dev/null; then
-  # pass
   :
+  # pass
 else
-  npm install
-fi
-# nothing command in after install, use command direct install
-PACKAGE=""
-if npm ls textlint &> /dev/null; then
-  npx textlint --version
-else
-  PACKAGE="-p textlint@${INPUT_TEXTLINT_VERSION:-11.6.3}"
-  echo textlint direct install version: ${INPUT_TEXTLINT_VERSION:-11.6.3}
+  echo This repository was not configured for textlint, process done.
+  exit 1
 fi
 
-npx ${PACKAGE} textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-.}" \
+npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-.}"            \
       | reviewdog -f=checkstyle -name="textlint"                   \
                   -reporter="${INPUT_REPORTER:-'github-pr-check'}" \
                   -level="${INPUT_LEVEL:-'error'}"
