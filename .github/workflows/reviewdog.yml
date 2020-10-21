@@ -12,7 +12,7 @@ jobs:
       - name: Setup node/npm
         uses: actions/setup-node@v2-beta # @v2 is not available yet
         with:
-          node-version: '14' # '15' is not available yet
+          node-version: '15'
       - name: textlint-github-pr-check
         uses: tsuyoshicho/action-textlint@master
         with:
