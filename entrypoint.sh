@@ -9,7 +9,7 @@ npm ls textlint
 echo exitcode $?
 
 # setup and check.
-if npm ls textlint &> /dev/null; then
+if [ npm ls --depth=0 textlint | grep -e " textlint@.*$" ]; then
   # pass
   :
 else
@@ -20,7 +20,7 @@ npm ls textlint
 
 echo exitcode $?
 
-if npm ls textlint &> /dev/null; then
+if [ npm ls --depth=0 textlint | grep -e " textlint@.*$" ]; then
   npx textlint --version
 else
   echo This repository was not configured for textlint, process done.
