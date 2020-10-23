@@ -4,6 +4,10 @@ cd "$GITHUB_WORKSPACE"
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
+npm ls textlint
+
+echo exitcode $?
+
 # setup and check.
 if npm ls textlint &> /dev/null; then
   # pass
@@ -11,6 +15,10 @@ if npm ls textlint &> /dev/null; then
 else
   npm ci
 fi
+
+npm ls textlint
+
+echo exitcode $?
 
 if npm ls textlint &> /dev/null; then
   npx textlint --version
