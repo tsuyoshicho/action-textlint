@@ -5,14 +5,14 @@ cd "$GITHUB_WORKSPACE"
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 # setup and check.
-if npm ls textlint &> /dev/null; then
+if [ -x "./node_modules/.bin/textlint"  ]; then
   # pass
   :
 else
   npm ci
 fi
 
-if npm ls textlint &> /dev/null; then
+if [ -x "./node_modules/.bin/textlint"  ]; then
   npx textlint --version
 else
   echo This repository was not configured for textlint, process done.
