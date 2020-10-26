@@ -39,9 +39,10 @@ if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
     -reporter="github-pr-review"     \
     -filter-mode="diff_context"      \
     -level="${INPUT_LEVEL:-'error'}" \
-    <"${TMPFILE}"
+    < "${TMPFILE}"
 
   git restore . || true
+  rm -f "${TMPFILE}"
 fi
 
 # EOF
