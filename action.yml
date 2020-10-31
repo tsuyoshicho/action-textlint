@@ -5,21 +5,36 @@ inputs:
   github_token:
     description: 'GITHUB_TOKEN.'
     required: true
+    default: ${{ github.token }}
   level:
     description: 'Report level for reviewdog [info,warning,error]'
     default: 'error'
-    required: false
   reporter:
     description: |
-      Reporter of reviewdog command [github-pr-check,github-check,github-pr-review].
-      Default is github-pr-check.
+      Reporter of reviewdog command [github-check,github-pr-review].
+      Default is github-pr-review.
       github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
-    default: 'github-pr-check'
-    required: false
+    default: 'github-pr-review'
+  filter_mode:
+    description: |
+      Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
+      Default is added.
+    default: 'added'
+  fail_on_error:
+    description: |
+      Exit code for reviewdog when errors are found [true,false]
+      Default is `false`.
+    default: 'false'
+  reviewdog_flags:
+    description: 'Additional reviewdog flags'
+    default: ''
   textlint_flags:
     description: "flags and args of textlint command. Default: '.'"
+    required: true
     default: '.'
-    required: false
+  tool_name:
+    description: 'Tool name to use for reviewdog reporter'
+    default: 'textlint'
 runs:
   using: 'docker'
   image: 'Dockerfile'

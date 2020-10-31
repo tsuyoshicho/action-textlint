@@ -19,10 +19,14 @@ else
   exit 1
 fi
 
-npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS:-.}"            \
-      | reviewdog -f=checkstyle -name="textlint"                   \
-                  -reporter="${INPUT_REPORTER:-'github-pr-check'}" \
-                  -level="${INPUT_LEVEL:-'error'}"
+npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS}"    \
+      | reviewdog -f=checkstyle                         \
+        -name="${INPUT_TOOL_NAME}"                      \
+        -reporter="${INPUT_REPORTER:-github-pr-review}" \
+        -filter-mode="${INPUT_FILTER_MODE}"             \
+        -fail-on-error="${INPUT_FAIL_ON_ERROR}"         \
+        -level="${INPUT_LEVEL}"                         \
+        ${INPUT_REVIEWDOG_FLAGS}
 
 # github-pr-review only diff adding
 if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
@@ -32,14 +36,15 @@ if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
   TMPFILE=$(mktemp)
   git diff >"${TMPFILE}"
 
-  reviewdog                          \
-    -name="textlint-fix"             \
-    -f=diff                          \
-    -f.diff.strip=1                  \
-    -reporter="github-pr-review"     \
-    -filter-mode="diff_context"      \
-    -level="${INPUT_LEVEL:-'error'}" \
-    < "${TMPFILE}"
+  reviewdog                        \
+    -name="textlint-fix"           \
+    -f=diff                        \
+    -f.diff.strip=1                \
+    -name="${INPUT_TOOL_NAME}-fix" \
+    -reporter="github-pr-review"   \
+    -filter-mode="diff_context"    \
+    -level="${INPUT_LEVEL}"        \
+    ${INPUT_REVIEWDOG_FLAGS} < "${TMPFILE}"
 
   git restore . || true
   rm -f "${TMPFILE}"
