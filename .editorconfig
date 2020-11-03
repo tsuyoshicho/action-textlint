@@ -16,9 +16,6 @@ end_of_line = lf
 [*.sh]
 end_of_line = lf
 
-[*.{txt,jax}]
-trim_trailing_whitespace = false
-
 # File
 [Makefile]
 end_of_line = lf
