@@ -2,14 +2,19 @@
 # vim:fenc=utf-8 ff=unix
 
 # git system files
-.gitconfig     eol=lf
-.gitconfig.*   eol=lf
 .gitattributes eol=lf
 .gitmodules    eol=lf
 # gitignore contains Icon^M <- CRLF end
 # skip autocrlf,diff enable -> not binary, set -text
 .gitignore     -text
 
+
+# Extension
+*.vim          text eol=lf
+*.vital        text eol=lf
 *.sh           text eol=lf
+
+# File
+Makefile       text eol=lf
 
 # EOF
