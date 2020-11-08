@@ -77,7 +77,7 @@ jobs:
         with:
           submodules: true
       - name: Setup node/npm
-        uses: actions/setup-node@v2-beta # @v2 is not available yet
+        uses: actions/setup-node@v1
         with:
           node-version: '15'
       - name: textlint-github-pr-check
