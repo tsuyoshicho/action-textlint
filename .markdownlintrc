@@ -1,0 +1,6 @@
+{
+  "default": true,
+  "single-title": false,
+  "line-length": false,
+  "whitespace": false
+}
