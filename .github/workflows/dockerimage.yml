@@ -1,17 +1,16 @@
 name: Docker Image CI
-
-on: [push]
-
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: true
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag tsuyoshicho-textlint:$(date +%s)
+        run: docker build . --file Dockerfile --tag ${{ github.repository }}:$(date +%s)
