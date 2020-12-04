@@ -45,9 +45,10 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      - name: redpen-github-pr-review
+      - name: textlint-github-pr-review
         uses: ./
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           textlint_flags: "doc/**"
+
