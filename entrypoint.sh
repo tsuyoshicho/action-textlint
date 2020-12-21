@@ -37,7 +37,6 @@ if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
   git diff >"${TMPFILE}"
 
   reviewdog                        \
-    -name="textlint-fix"           \
     -f=diff                        \
     -f.diff.strip=1                \
     -name="${INPUT_TOOL_NAME}-fix" \
