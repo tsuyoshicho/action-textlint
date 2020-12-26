@@ -1,4 +1,4 @@
-FROM node:15.4.0-alpine
+FROM node:15.5.0-alpine
 
 # reviewdog
 ENV REVIEWDOG_VERSION=v0.11.0
