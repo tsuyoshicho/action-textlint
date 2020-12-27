@@ -1,6 +1,9 @@
 #!/bin/sh
+set -e
 
-cd "$GITHUB_WORKSPACE" || true
+if [ -n "${GITHUB_WORKSPACE}" ] ; then
+  cd "${GITHUB_WORKSPACE}" || exit
+fi
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
@@ -19,6 +22,7 @@ else
   exit 1
 fi
 
+# shellcheck disable=SC2086
 npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS}"    \
       | reviewdog -f=checkstyle                         \
         -name="${INPUT_TOOL_NAME}"                      \
@@ -36,6 +40,7 @@ if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
   TMPFILE=$(mktemp)
   git diff >"${TMPFILE}"
 
+  # shellcheck disable=SC2086
   reviewdog                        \
     -f=diff                        \
     -f.diff.strip=1                \
