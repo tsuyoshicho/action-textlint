@@ -6,7 +6,6 @@ action-textlint use textlint within npm ecosystem.
 
 ## detail
 
-[![Docker Image CI](https://github.com/tsuyoshicho/action-textlint/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/tsuyoshicho/action-textlint/actions)
 [![Release](https://github.com/tsuyoshicho/action-textlint/workflows/release/badge.svg)](https://github.com/tsuyoshicho/action-textlint/releases)
 
 This action runs [textlint](https://github.com/textlint/textlint) with
@@ -17,6 +16,14 @@ based on [reviewdog/action-vint](https://github.com/reviewdog/action-vint)
 
 [![github-pr-check example](https://user-images.githubusercontent.com/96727/70858620-bdc2fb80-1f48-11ea-9c1a-b5abb5a6566a.png)](https://user-images.githubusercontent.com/96727/70858620-bdc2fb80-1f48-11ea-9c1a-b5abb5a6566a.png)
 [![github-pr-review example](https://user-images.githubusercontent.com/96727/70858610-a1bf5a00-1f48-11ea-84c4-7ee7392548e6.png)](https://user-images.githubusercontent.com/96727/70858610-a1bf5a00-1f48-11ea-84c4-7ee7392548e6.png)
+
+Notice:
+This action is `composition action`. It need `npm ci`.
+
+You accept below one:
+
+- Your workflow manually setup to run `npm ci`.
+- This action automatic run `npm ci`.
 
 ## Inputs
 
@@ -81,19 +88,19 @@ jobs:
         with:
           node-version: '15'
       - name: textlint-github-pr-check
-        uses: tsuyoshicho/action-textlint@v2
+        uses: tsuyoshicho/action-textlint@v3
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           textlint_flags: "doc/**"
       - name: textlint-github-check
-        uses: tsuyoshicho/action-textlint@v2
+        uses: tsuyoshicho/action-textlint@v3
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           textlint_flags: "doc/**"
       - name: textlint-github-pr-review
-        uses: tsuyoshicho/action-textlint@v2
+        uses: tsuyoshicho/action-textlint@v3
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
