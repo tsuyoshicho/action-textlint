@@ -13,17 +13,16 @@ echo '::endgroup::'
 
 echo '::group:: Installing textlint ...  https://github.com/textlint/textlint'
 if [ -x "./node_modules/.bin/textlint"  ]; then
-  # pass
-  echo '::group:: already installed'
+  echo 'already installed'
 else
-  echo '::group:: npm ci start'
+  echo 'npm ci start'
   npm ci
 fi
 
 if [ -x "./node_modules/.bin/textlint"  ]; then
   npx textlint --version
 else
-  echo '::group:: This repository was not configured for textlint, process done.'
+  echo 'This repository was not configured for textlint, process done.'
   exit 1
 fi
 echo '::endgroup::'
@@ -41,10 +40,11 @@ npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS}"    \
         -fail-on-error="${INPUT_FAIL_ON_ERROR}"         \
         -level="${INPUT_LEVEL}"                         \
         ${INPUT_REVIEWDOG_FLAGS}
+echo '::endgroup::'
 
 # github-pr-review only diff adding
 if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
-  echo '::group:: textlint fixing report'
+  echo '::group:: Running textlint fixing report 🐶 ...'
   # fix
   npx textlint --fix "${INPUT_TEXTLINT_FLAGS:-.}" || true
 
@@ -63,7 +63,7 @@ if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
 
   git restore . || true
   rm -f "${TMPFILE}"
+  echo '::endgroup::'
 fi
-echo '::endgroup::'
 
 # EOF
