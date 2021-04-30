@@ -5,13 +5,9 @@ on:
       - master
     tags:
       - 'v*.*.*'
-  pull_request:
-    types:
-      - labeled
 
 jobs:
   release:
-    if: github.event.action != 'labeled'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -56,15 +52,3 @@ jobs:
           body: ${{ steps.bumpr.outputs.message }}
           draft: false
           prerelease: false
-
-  release-check:
-    if: github.event.action == 'labeled'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          submodules: true
-
-      - name: Post bumpr status comment
-        uses: haya14busa/action-bumpr@v1
