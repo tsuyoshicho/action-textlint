@@ -1,0 +1,17 @@
+name: release check
+on:
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  release-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Post bumpr status comment
+        uses: haya14busa/action-bumpr@v1
