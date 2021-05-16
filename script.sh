@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # shellcheck disable=SC2086,SC2089,SC2090
 
@@ -31,19 +31,25 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 
 echo '::group:: Running textlint with reviewdog 🐶 ...'
+textlint_exit_val="0"
+reviewdog_exit_val="0"
+
 # shellcheck disable=SC2086
-npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS}"    \
-      | reviewdog -f=checkstyle                         \
-        -name="${INPUT_TOOL_NAME}"                      \
-        -reporter="${INPUT_REPORTER:-github-pr-review}" \
-        -filter-mode="${INPUT_FILTER_MODE}"             \
-        -fail-on-error="${INPUT_FAIL_ON_ERROR}"         \
-        -level="${INPUT_LEVEL}"                         \
-        ${INPUT_REVIEWDOG_FLAGS}
+textlint_check_output=$(npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS}" 2>&1) \
+                      || textlint_exit_val="$?"
+
+# shellcheck disable=SC2086
+echo "${textlint_check_output}" | reviewdog -f=checkstyle \
+        -name="${INPUT_TOOL_NAME}"                        \
+        -reporter="${INPUT_REPORTER:-github-pr-review}"   \
+        -filter-mode="${INPUT_FILTER_MODE}"               \
+        -fail-on-error="${INPUT_FAIL_ON_ERROR}"           \
+        -level="${INPUT_LEVEL}"                           \
+        ${INPUT_REVIEWDOG_FLAGS} || reviewdog_exit_val="$?"
 echo '::endgroup::'
 
 # github-pr-review only diff adding
-if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
+if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
   echo '::group:: Running textlint fixing report 🐶 ...'
   # fix
   npx textlint --fix "${INPUT_TEXTLINT_FLAGS:-.}" || true
@@ -64,6 +70,14 @@ if [ "${INPUT_REPORTER}" = "github-pr-review" ]; then
   git restore . || true
   rm -f "${TMPFILE}"
   echo '::endgroup::'
+fi
+
+# Throw error if an error occurred and fail_on_error is true
+if [[ "${INPUT_FAIL_ON_ERROR}" == "true"       \
+      && ( "${textlint_exit_val}" != "0"       \
+           || "${reviewdog_exit_val}" != "0" ) \
+   ]]; then
+  exit 1
 fi
 
 # EOF
