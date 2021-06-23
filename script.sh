@@ -35,7 +35,7 @@ textlint_exit_val="0"
 reviewdog_exit_val="0"
 
 # shellcheck disable=SC2086
-textlint_check_output=$(npx textlint -f checkstyle "${INPUT_TEXTLINT_FLAGS}" 2>&1) \
+textlint_check_output=$(npx textlint -f checkstyle ${INPUT_TEXTLINT_FLAGS} 2>&1) \
                       || textlint_exit_val="$?"
 
 # shellcheck disable=SC2086
@@ -52,7 +52,7 @@ echo '::endgroup::'
 if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
   echo '::group:: Running textlint fixing report 🐶 ...'
   # fix
-  npx textlint --fix "${INPUT_TEXTLINT_FLAGS:-.}" || true
+  npx textlint --fix ${INPUT_TEXTLINT_FLAGS:-.} || true
 
   TMPFILE=$(mktemp)
   git diff >"${TMPFILE}"
