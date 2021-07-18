@@ -55,7 +55,9 @@ if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
   npx textlint --fix ${INPUT_TEXTLINT_FLAGS:-.} || true
 
   TMPFILE=$(mktemp)
-  git diff >"${TMPFILE}"
+  git diff > "${TMPFILE}"
+
+  git stash -u
 
   # shellcheck disable=SC2086
   reviewdog                        \
@@ -67,8 +69,7 @@ if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
     -level="${INPUT_LEVEL}"        \
     ${INPUT_REVIEWDOG_FLAGS} < "${TMPFILE}"
 
-  git restore . || true
-  rm -f "${TMPFILE}"
+  git stash drop || true
   echo '::endgroup::'
 fi
 
