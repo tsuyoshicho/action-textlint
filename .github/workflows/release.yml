@@ -5,6 +5,8 @@ on:
       - master
     tags:
       - 'v*.*.*'
+permissions:
+  contents: write
 
 jobs:
   release:
@@ -41,14 +43,12 @@ jobs:
 
       # Create release.
       - name: Create release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         if: "steps.tag.outputs.value != ''"
-        env:
-          # This token is provided by Actions, you do not need to create your own token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag.outputs.value }}
-          release_name: Release ${{ steps.tag.outputs.value }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: Release ${{ steps.tag.outputs.value }}
           body: ${{ steps.bumpr.outputs.message }}
+          tag_name: ${{ steps.tag.outputs.value }}
           draft: false
           prerelease: false
