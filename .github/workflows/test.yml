@@ -4,6 +4,9 @@ on:
     branches:
       - master
   pull_request:
+permissions:
+  pull-requests: write
+
 jobs:
   test-check:
     name: runner / textlint (github-check)
@@ -51,4 +54,3 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           textlint_flags: "doc/**"
-
