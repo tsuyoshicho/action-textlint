@@ -24,8 +24,9 @@ elif [[ "${INPUT_PACKAGE_MANAGER}" == "pnpm" ]]; then
   echo 'pnpm install start'
   pnpm install
 else
-  echo 'npm ci start'
-  npm ci
+  echo 'The specified package manager is not supported.'
+  echo '::endgroup::'
+  exit 1
 fi
 
 if [ -x "./node_modules/.bin/textlint"  ]; then
