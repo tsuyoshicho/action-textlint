@@ -62,6 +62,11 @@ Optional. Additional reviewdog flags
 
 textlint arguments (i.e. target dir:`doc/*`)
 
+### `package_manager`
+
+Optional. Package manager used in the repository [npm,yarn,pnpm]
+Default is `npm`.
+
 ## Customizes
 
 `.textlintrc` put in your repo.

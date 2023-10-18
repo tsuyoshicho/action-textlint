@@ -14,6 +14,15 @@ echo '::endgroup::'
 echo '::group:: Installing textlint ...  https://github.com/textlint/textlint'
 if [ -x "./node_modules/.bin/textlint"  ]; then
   echo 'already installed'
+elif INPUT_PACKAGE_MANAGER=npm; then
+  echo 'npm ci start'
+  npm ci
+elif INPUT_PACKAGE_MANAGER=yarn; then
+  echo 'yarn install start'
+  yarn install
+elif INPUT_PACKAGE_MANAGER=pnpm; then
+  echo 'pnpm install start'
+  pnpm install
 else
   echo 'npm ci start'
   npm ci

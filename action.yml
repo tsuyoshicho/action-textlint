@@ -35,6 +35,9 @@ inputs:
   tool_name:
     description: 'Tool name to use for reviewdog reporter'
     default: 'textlint'
+  package_manager:
+    description: 'Package manager used in the repository'
+    default: 'npm'
 runs:
   using: 'composite'
   steps:
@@ -52,6 +55,7 @@ runs:
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
         INPUT_TEXTLINT_FLAGS: ${{ inputs.textlint_flags }}
         INPUT_TOOL_NAME: ${{ inputs.tool_name }}
+        INPUT_PACKAGE_MANAGER: ${{ inputs.package_manager }}
 branding:
   icon: 'alert-octagon'
   color: 'blue'
