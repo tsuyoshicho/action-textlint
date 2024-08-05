@@ -88,10 +88,7 @@ if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
 fi
 
 # Throw error if an error occurred and fail_on_error is true
-if [[ "${INPUT_FAIL_ON_ERROR}" == "true"       \
-      && ( "${textlint_exit_val}" != "0"       \
-           || "${reviewdog_exit_val}" != "0" ) \
-   ]]; then
+if [[ "${INPUT_FAIL_ON_ERROR}" == "true" && "${reviewdog_exit_val}" != "0" ]]; then
   exit 1
 fi
 
