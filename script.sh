@@ -43,6 +43,8 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 echo '::group:: Running textlint with reviewdog 🐶 ...'
 textlint_exit_val="0"
 reviewdog_exit_val="0"
+# ignore preview exit code
+reviewdog_exit_val2="0"
 
 # shellcheck disable=SC2086
 textlint_check_output=$(npx textlint -f checkstyle ${INPUT_TEXTLINT_FLAGS} 2>&1) \
@@ -69,15 +71,17 @@ if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
 
   git stash -u
 
-  # shellcheck disable=SC2086
-  reviewdog                        \
-    -f=diff                        \
-    -f.diff.strip=1                \
-    -name="${INPUT_TOOL_NAME}-fix" \
-    -reporter="github-pr-review"   \
-    -filter-mode="diff_context"    \
-    -level="${INPUT_LEVEL}"        \
-    ${INPUT_REVIEWDOG_FLAGS} < "${TMPFILE}"
+  # shellcheck disable=SC2086,SC2034
+  reviewdog                                 \
+    -f=diff                                 \
+    -f.diff.strip=1                         \
+    -name="${INPUT_TOOL_NAME}-fix"          \
+    -reporter="github-pr-review"            \
+    -filter-mode="${INPUT_FILTER_MODE}"     \
+    -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
+    -level="${INPUT_LEVEL}"                 \
+    ${INPUT_REVIEWDOG_FLAGS} < "${TMPFILE}" \
+    || reviewdog_exit_val2="$?"
 
   git stash drop || true
   echo '::endgroup::'
