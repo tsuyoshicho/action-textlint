@@ -26,7 +26,7 @@
   "devDependencies": {},
   "dependencies": {
     "textlint": "14.4.2",
-    "textlint-rule-preset-ja-technical-writing": "10.0.2",
+    "textlint-rule-preset-ja-technical-writing": "12.0.2",
     "textlint-rule-prh": "6.0.0",
     "textlint-rule-spellcheck-tech-word": "5.0.0"
   }
