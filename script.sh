@@ -11,6 +11,8 @@ echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/review
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
 
+PACKAGE_EXECUTER=npx
+
 echo '::group:: Installing textlint ...  https://github.com/textlint/textlint'
 if [ -x "./node_modules/.bin/textlint"  ]; then
   echo 'already installed'
@@ -23,6 +25,10 @@ elif [[ "${INPUT_PACKAGE_MANAGER}" == "yarn" ]]; then
 elif [[ "${INPUT_PACKAGE_MANAGER}" == "pnpm" ]]; then
   echo 'pnpm install start'
   pnpm install
+elif [[ "${INPUT_PACKAGE_MANAGER}" == "bun" ]]; then
+  echo 'bun install start'
+  bun install
+  PACKAGE_EXECUTER=bunx
 else
   echo 'The specified package manager is not supported.'
   echo '::endgroup::'
@@ -30,7 +36,7 @@ else
 fi
 
 if [ -x "./node_modules/.bin/textlint"  ]; then
-  npx textlint --version
+  $PACKAGE_EXECUTER textlint --version
 else
   echo 'This repository was not configured for textlint, process done.'
   exit 1
@@ -47,7 +53,7 @@ reviewdog_exit_val="0"
 reviewdog_exit_val2="0"
 
 # shellcheck disable=SC2086
-textlint_check_output=$(npx textlint -f checkstyle ${INPUT_TEXTLINT_FLAGS} 2>&1) \
+textlint_check_output=$(${PACKAGE_EXECUTER} textlint -f checkstyle ${INPUT_TEXTLINT_FLAGS} 2>&1) \
                       || textlint_exit_val="$?"
 
 # shellcheck disable=SC2086
@@ -64,7 +70,7 @@ echo '::endgroup::'
 if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
   echo '::group:: Running textlint fixing report 🐶 ...'
   # fix
-  npx textlint --fix ${INPUT_TEXTLINT_FLAGS:-.} || true
+  $PACKAGE_EXECUTER textlint --fix ${INPUT_TEXTLINT_FLAGS:-.} || true
 
   TMPFILE=$(mktemp)
   git diff > "${TMPFILE}"
