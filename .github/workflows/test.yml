@@ -33,7 +33,7 @@ jobs:
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: textlint-github-check
@@ -54,7 +54,7 @@ jobs:
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: textlint-github-check
@@ -75,7 +75,7 @@ jobs:
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Setup pnpm
@@ -100,7 +100,7 @@ jobs:
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Setup bun
