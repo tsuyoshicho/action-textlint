@@ -25,7 +25,7 @@ jobs:
 
   test-pr-check-npm:
     if: github.event_name == 'pull_request'
-    name: runner / textlint (github-pr-check)
+    name: runner / textlint (github-pr-check, npm)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,7 +46,7 @@ jobs:
 
   test-pr-check-yarn:
     if: github.event_name == 'pull_request'
-    name: runner / textlint (github-pr-check)
+    name: runner / textlint (github-pr-check, yarn)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -67,7 +67,7 @@ jobs:
 
   test-pr-check-pnpm:
     if: github.event_name == 'pull_request'
-    name: runner / textlint (github-pr-check)
+    name: runner / textlint (github-pr-check, pnpm)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -92,7 +92,7 @@ jobs:
 
   test-pr-check-bun:
     if: github.event_name == 'pull_request'
-    name: runner / textlint (github-pr-check)
+    name: runner / textlint (github-pr-check, bun)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
