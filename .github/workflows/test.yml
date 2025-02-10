@@ -111,7 +111,7 @@ jobs:
         uses: ./
         with:
           github_token: ${{ secrets.github_token }}
-          package_manager: pnpm
+          package_manager: bun
           reporter: github-pr-check
           textlint_flags: "doc/**"
 
