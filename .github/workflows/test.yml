@@ -25,7 +25,7 @@ jobs:
 
   test-pr-check-npm:
     if: github.event_name == 'pull_request'
-    name: runner / textlint (github-pr-check)
+    name: runner / textlint (github-pr-check, npm)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -46,7 +46,7 @@ jobs:
 
   test-pr-check-yarn:
     if: github.event_name == 'pull_request'
-    name: runner / textlint (github-pr-check)
+    name: runner / textlint (github-pr-check, yarn)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -67,7 +67,7 @@ jobs:
 
   test-pr-check-pnpm:
     if: github.event_name == 'pull_request'
-    name: runner / textlint (github-pr-check)
+    name: runner / textlint (github-pr-check, pnpm)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -87,6 +87,31 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           package_manager: pnpm
+          reporter: github-pr-check
+          textlint_flags: "doc/**"
+
+  test-pr-check-bun:
+    if: github.event_name == 'pull_request'
+    name: runner / textlint (github-pr-check, bun)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: textlint-github-check
+        uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          package_manager: bun
           reporter: github-pr-check
           textlint_flags: "doc/**"
 
