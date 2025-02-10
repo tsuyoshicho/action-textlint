@@ -64,7 +64,7 @@ textlint arguments (i.e. target dir:`doc/*`)
 
 ### `package_manager`
 
-Optional. Package manager used in the repository [npm,yarn,pnpm]
+Optional. Package manager used in the repository [npm,yarn,pnpm,bun]
 Default is `npm`.
 
 ## Customizes
