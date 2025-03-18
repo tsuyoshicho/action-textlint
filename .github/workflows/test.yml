@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: true
       - name: textlint-github-check
@@ -29,11 +29,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
+        uses: actions/setup-node@v4.3.0
         with:
           node-version: 20
       - name: textlint-github-check
@@ -50,11 +50,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
+        uses: actions/setup-node@v4.3.0
         with:
           node-version: 20
       - name: textlint-github-check
@@ -71,15 +71,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
+        uses: actions/setup-node@v4.3.0
         with:
           node-version: 20
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v4.1.0
         with:
           version: latest
       - name: textlint-github-check
@@ -96,15 +96,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: true
       - name: Setup node
-        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4
+        uses: actions/setup-node@v4.3.0
         with:
           node-version: 20
       - name: Setup bun
-        uses: oven-sh/setup-bun@4bc047ad259df6fc24a6c9b0f9a0cb08cf17fbe5 # v2
+        uses: oven-sh/setup-bun@v2.0.1
         with:
           bun-version: latest
       - name: textlint-github-check
@@ -121,7 +121,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@v4.2.2
         with:
           submodules: true
       - name: textlint-github-pr-review
