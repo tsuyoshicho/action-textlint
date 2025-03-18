@@ -14,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           submodules: true
 
       - name: Check depup
-        uses: haya14busa/action-depup@v1.6.4
+        uses: haya14busa/action-depup@94a1aaf4e4923064019214b48a43276218af7ad5 # v1.6.4
         id: depup
         with:
           file: action.yml
@@ -27,7 +27,7 @@ jobs:
           repo: reviewdog/reviewdog
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7.0.8
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           author: 'github-actions <41898282+github-actions[bot]@users.noreply.github.com>'
