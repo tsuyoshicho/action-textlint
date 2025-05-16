@@ -49,10 +49,20 @@ github-pr-review can use Markdown and add a link to rule page in reviewdog repor
 Optional. Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
 Default is added.
 
+### `fail_level`
+
+Optional.  Exit code control for reviewdog, [none,any,info,warning,error]
+Default is `none`.
+
 ### `fail_on_error`
+
+**Deprecated.**
 
 Optional.  Exit code for reviewdog when errors are found [true,false]
 Default is `false`.
+
+If `true` is set, it will be interpreted as "-fail-level=error".
+But if "-fail-level" is set non-`none`, it will be ignored.
 
 ### `reviewdog_flags`
 
