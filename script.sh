@@ -69,7 +69,7 @@ echo "${textlint_check_output}" | reviewdog -f=checkstyle \
         -name="${INPUT_TOOL_NAME}"                        \
         -reporter="${INPUT_REPORTER:-github-pr-review}"   \
         -filter-mode="${INPUT_FILTER_MODE}"               \
-        -fail_level="${fail_level}"                       \
+        -fail-level="${fail_level}"                       \
         -level="${INPUT_LEVEL}"                           \
         ${INPUT_REVIEWDOG_FLAGS} || reviewdog_exit_val="$?"
 echo '::endgroup::'
@@ -92,7 +92,7 @@ if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
     -name="${INPUT_TOOL_NAME}-fix"          \
     -reporter="github-pr-review"            \
     -filter-mode="${INPUT_FILTER_MODE}"     \
-    -fail_level="${fail_level}"             \
+    -fail-level="${fail_level}"             \
     -level="${INPUT_LEVEL}"                 \
     ${INPUT_REVIEWDOG_FLAGS} < "${TMPFILE}" \
     || reviewdog_exit_val2="$?"
