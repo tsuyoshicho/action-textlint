@@ -52,6 +52,14 @@ reviewdog_exit_val="0"
 # ignore preview exit code
 reviewdog_exit_val2="0"
 
+fail_level="${INPUT_FAIL_LEVEL}"
+if [[ "${INPUT_FAIL_LEVEL}" == "none" ]] && [[ "${INPUT_FAIL_ON_ERROR}" == "true" ]]; then
+  fail_level="error"
+fi
+
+echo "report level is: ${INPUT_LEVEL}"
+echo "fail level is: ${fail_level}"
+
 # shellcheck disable=SC2086
 textlint_check_output=$(${PACKAGE_EXECUTER} textlint -f checkstyle ${INPUT_TEXTLINT_FLAGS} 2>&1) \
                       || textlint_exit_val="$?"
@@ -61,7 +69,7 @@ echo "${textlint_check_output}" | reviewdog -f=checkstyle \
         -name="${INPUT_TOOL_NAME}"                        \
         -reporter="${INPUT_REPORTER:-github-pr-review}"   \
         -filter-mode="${INPUT_FILTER_MODE}"               \
-        -fail-on-error="${INPUT_FAIL_ON_ERROR}"           \
+        -fail-level="${fail_level}"                       \
         -level="${INPUT_LEVEL}"                           \
         ${INPUT_REVIEWDOG_FLAGS} || reviewdog_exit_val="$?"
 echo '::endgroup::'
@@ -84,7 +92,7 @@ if [[ "${INPUT_REPORTER}" == "github-pr-review" ]]; then
     -name="${INPUT_TOOL_NAME}-fix"          \
     -reporter="github-pr-review"            \
     -filter-mode="${INPUT_FILTER_MODE}"     \
-    -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
+    -fail-level="${fail_level}"             \
     -level="${INPUT_LEVEL}"                 \
     ${INPUT_REVIEWDOG_FLAGS} < "${TMPFILE}" \
     || reviewdog_exit_val2="$?"

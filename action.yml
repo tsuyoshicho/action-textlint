@@ -20,10 +20,20 @@ inputs:
       Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
       Default is added.
     default: 'added'
+  fail_level:
+    description: |
+      Optional.  Exit code control for reviewdog, [none,any,info,warning,error]
+      Default is `none`.
+    default: 'none'
   fail_on_error:
     description: |
-      Exit code for reviewdog when errors are found [true,false]
+      Deprecated.
+
+      Optional.  Exit code for reviewdog when errors are found [true,false]
       Default is `false`.
+
+      If `true` is set, it will be interpreted as "-fail-level=error".
+      But if "-fail-level" is set non-`none`, it will be ignored.
     default: 'false'
   reviewdog_flags:
     description: 'Additional reviewdog flags'
@@ -51,6 +61,7 @@ runs:
         INPUT_LEVEL: ${{ inputs.level }}
         INPUT_REPORTER: ${{ inputs.reporter }}
         INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
+        INPUT_FAIL_LEVEL: ${{ inputs.fail_level }}
         INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
         INPUT_TEXTLINT_FLAGS: ${{ inputs.textlint_flags }}
